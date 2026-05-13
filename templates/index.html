@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/reset.css">
+    <link rel="stylesheet" href="/static/style.css">
     <title>벨런스게임</title>
 </head>
 <body>
@@ -20,24 +22,37 @@
     </a>
     <hr>
     <h2>게시글 목록</h2>
-
+    <div class="container">
     {% for post in posts %}
-        <div style="border: 1px solid #ccc; margin:10px; padding: 10px;">
-            <h3>{{post["title"]}}</h3>
-            <p>
-                A: {{post["option_a"]}} {{post["vote_a"]}}
-                <a href="/vote/{{post['id']}}/a">투표</a>
-            </p>
-            <p>
-                B: {{post["option_b"]}} {{post["vote_b"]}}
-                <a href="/vote/{{post['id']}}/b">투표</a>
-            </p>
-
+        <div class="card">
+            <div class="title">
+                <a href="/post/{{post['id']}}">
+                    {{ post["title"] }}
+                </a>
+            </div>
+           
+                {% if post["vote_a"] > post["vote_b"] %}
+                    <div class="badge">
+                    🔥 {{ post["option_a"] }} 우세
+                    </div>
+                 {% elif post["vote_b"] > post["vote_a"] %}
+                     <div class="badge">
+                    🔥 {{ post["option_b"] }} 우세
+                    </div>
+                {% else %}
+                    <div class="badge">
+                    ⚖️ 동률
+                    </div>
+                {% endif %}
+           
+            <div class="btn_box">
             <a href="/edit/{{post['id']}}">수정</a>
             <form method="POST" action="/delete/{{post['id']}}" style="display:inline;">
                 <button type="submit">삭제</button>
             </form>
+            </div>
         </div>
     {%endfor%}
+    </div>
 </body>
 </html>

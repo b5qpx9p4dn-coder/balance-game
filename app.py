@@ -181,5 +181,30 @@ def logout():
     session.clear()
     return redirect("/")
 
+
+@app.route("/post/<int:post_id>")
+def post_detail(post_id):
+    db=get_db()
+
+    post = db.execute("""
+        SELECT * FROM posts WHERE id = ?
+    """, (post_id,)).fetchone()
+
+    if post is None:
+        return "글 없음"
+    total = post["vote_a"] + post["vote_b"]
+    if total >0:
+        percent_a = round(post["vote_a"]/ total *100)
+        percent_b = 100 - percent_a
+    else:
+        percent_a = percent_b = 0
+    
+    return render_template(
+        "detail.html", 
+        post=post,
+        percent_a = percent_a,
+        percent_b = percent_b,
+        total=total
+    )
 if __name__ == "__main__":
     app.run(debug=True)

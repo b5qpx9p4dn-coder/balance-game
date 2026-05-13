@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/reset.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>{{ post["title"] }}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+    <div class="title">{{ post["title"] }}</div>
+    <hr>
+    <div class="option-box">
+    <p>A: {{post["option_a"]}}({{post["vote_a"]}}표 / {{percent_a}}%)</p>
+    <a href="/vote/{{post['id']}}/a" class="vote_btn">A투표</a>
+    </div>
+    <hr>
+    <div class="option-box">
+    <p>B: {{post["option_b"]}}({{post["vote_b"]}}표 / {{percent_b}}%)</p>
+    
+    <a href="/vote/{{post['id']}}/b" class="vote_btn">B투표</a>
+    </div>
+    <hr>
+    <p>총 투표수 : {{total}}</p>
+    </div>
+    </div>
+</body>
+</html>
