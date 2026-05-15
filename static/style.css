@@ -271,10 +271,10 @@ hr{
     
 }
 .form-card h1{
-    margin-bottom:20px;
+ 
     font-size: 22px;
     text-align: center;
-    margin-bottom: 50px;
+  
 }
 .form-card p{
     font-weight: 700;
@@ -306,6 +306,7 @@ hr{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .result-bar{
