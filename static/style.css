@@ -134,6 +134,11 @@ body{
   border-radius: 8px;
   margin: 10px 0;
 }
+.option-box p {
+    width: 70%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
 .vote_btn{
    background: #f1f3f5;
    padding: 8px 12px;
