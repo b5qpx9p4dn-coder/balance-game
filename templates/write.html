@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/reset.css">
+    <link rel="stylesheet" href="/static/style.css">
     <title>글 작성</title>
 </head>
 <body>
+    <div class="form-container">
+    <div class="form-card">
     <h1>밸런스게임 작성</h1>
     <form method="POST">
         <p>제목</p>
-        <input type="text" name="title">
+        <input type="text" name="title" placeholder="제목">
 
         <p>선택지 A</p>
-        <input type="text" name="option_a">
+        <input type="text" name="option_a" placeholder="A선택지">
         <p>선택지 B</p>
-        <input type="text" name="option_b">
+        <input type="text" name="option_b" placeholder="B 선택지">
 
         <br><br>
         <button type="submit">등록</button>
     </form>
+    </div>
+    </div>
 </body>
 </html>

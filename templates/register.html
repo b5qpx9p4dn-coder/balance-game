@@ -3,15 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/reset.css">
+    <link rel="stylesheet" href="/static/style.css">
     <title>회원가입</title>
 </head>
+
 <body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-box">
+                {% for msg in messages %}
+                    <p>{{msg}}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <script>
+        setTimeout(()=>{
+            const box = document.querySelector(".flash-box");
+            if(box){
+                box.style.opacity ="0";
+                box.style.transition ="0.3s";
+                sseTimeout(()=>box.remove(), 300)
+            }
+        },2000)
+    </script>
+    <header id="header">
+    <h1 class="logo"><a href="/">Blance Game</a> </h1>
+    <div class="util">
+    {% if session.get('username')%}
+        <span class="user">{{session['username']}}님</span>
+        <a href="/logout" class="btn logout">로그아웃</a>
+    {% else %}
+        <a href="/login" class="btn">로그인</a>
+        <a href="/register" class="btn primary">회원가입</a>
+    {% endif %}
+    </div>
+    </header>
+    <div class="auth-container">
+        <div class="auth-card">
     <h1>회원가입</h1>
     <form method="POST">
         <input type="text" name="username" placeholder="아이디">
         <input type="password" name="password" placeholder="비밀번호">
+        <input type="password" name="password2" placeholder="비밀번호 확인">
         <button type="submit">가입</button>
     </form>
-    
+    </div>
+    </div>
 </body>
 </html>

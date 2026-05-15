@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/reset.css">
+    <link rel="stylesheet" href="/static/style.css">
     <title>수정</title>
 </head>
 <body>
+    <header id="header">
+    <h1 class="logo"><a href="/">Blance Game</a> </h1>
+    <div class="util">
+    {% if session.get('username')%}
+        <span class="user">{{session['username']}}님</span>
+        <a href="/logout" class="btn logout">로그아웃</a>
+    {% else %}
+        <a href="/login" class="btn">로그인</a>
+        <a href="/register" class="btn primary">회원가입</a>
+    {% endif %}
+    </div>
+    </header>
+     
+     <div class="form-container">
+        
+    <div class="form-card">
     <h1>게시글 수정</h1>
+    
 
     <form method="POST">
         <p>제목</p>
@@ -18,5 +37,7 @@
 
         <button type="submit">수정 완료</button>
     </form>
+    </div>
+    </div>
 </body>
 </html>

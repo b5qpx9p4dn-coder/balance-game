@@ -8,23 +8,65 @@
     <title>{{ post["title"] }}</title>
 </head>
 <body>
+    <header id="header">
+    <h1 class="logo"><a href="/">Blance Game</a> </h1>
+    <div class="util">
+    {% if session.get('username')%}
+        <span class="user">{{session['username']}}님</span>
+        <a href="/logout" class="btn logout">로그아웃</a>
+    {% else %}
+        <a href="/login" class="btn">로그인</a>
+        <a href="/register" class="btn primary">회원가입</a>
+    {% endif %}
+    </div>
+    </header>
     <div class="container">
         <div class="card">
+    <div class="card-header">
+         
     <div class="title">{{ post["title"] }}</div>
-    <hr>
-    <div class="option-box">
-    <p>A: {{post["option_a"]}}({{post["vote_a"]}}표 / {{percent_a}}%)</p>
-    <a href="/vote/{{post['id']}}/a" class="vote_btn">A투표</a>
+    <a href="/" class="btn">← 목록으로</a>   
     </div>
     <hr>
     <div class="option-box">
-    <p>B: {{post["option_b"]}}({{post["vote_b"]}}표 / {{percent_b}}%)</p>
+    <p>A: {{post["option_a"]}}({{post["vote_a"]}})표 </p>
+    <a href="/vote/{{post['id']}}/a" class="vote_btn">A투표</a>
+
+    </div>
+    <div class="result-bar">
+        <div class="fill a" style="width: {{percent_a}}%">{{percent_a}}%</div>
+    </div>
+    <hr>
+    <div class="option-box">
+    <p>B: {{post["option_b"]}}({{post["vote_b"]}})표</p>
     
     <a href="/vote/{{post['id']}}/b" class="vote_btn">B투표</a>
     </div>
-    <hr>
-    <p>총 투표수 : {{total}}</p>
+    <div class="result-bar">
+        <div class="fill b" style="width: {{percent_b}}%">{{percent_b}}%</div>
     </div>
+    <hr>
+    <p class="total">총 투표수 : {{total}}</p>
+    </div>
+    </div>
+    <div class="comment-list">
+        {% if comments %}
+            {% for c in comments %}
+                <div class="comment">
+                <div class="comment-user">{{ c["username"] }}</div>
+                <div class="comment-text">{{ c["content"] }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-comment">첫 댓글을 작성해보세요 👀</p>
+        {% endif %}
+    </div>
+    <div class="comment-box">
+        <h3>댓글</h3>
+        <form method="POST" action="/comment/{{post['id']}}" class="comment-form">
+            <input type="text" name="content" placeholder="댓글을 입력하세요" required>
+            <button type="submit">작성</button>
+        </form>
     </div>
 </body>
 </html>

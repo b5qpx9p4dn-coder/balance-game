@@ -1,0 +1,19 @@
+  {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-box">
+                {% for msg in messages %}
+                    <p>{{msg}}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <script>
+        setTimeout(()=>{
+            const box = document.querySelector(".flash-box");
+            if(box){
+                box.style.opacity ="0";
+                box.style.transition ="0.3s";
+                sseTimeout(()=>box.remove(), 300)
+            }
+        },2000)
+    </script>
